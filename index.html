@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>irpsf</title>
+
+    <script src="https://unpkg.com/htmx.org@2.0.2"></script>
+    <script src="https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js"></script>
+  </head>
+  <body>
+    <script type="text/javascript">
+      var peer = new Peer();
+
+      peer.on("open", function (id) {
+        console.log(id);
+        let playerId = id;
+        document.getElementById("player-id").innerHTML = playerId;
+      });
+
+      <!-- var conn = peer.connect('a19c3c97-3c97-4849-a6e2-5548bcabc0e1') -->
+    </script>
+
+    <h1 id="player-id"></h1>
+
+    <form action="">
+      <label for="opponent-id">opponent id:</label>
+      <input type="text" id="opponent-id" name="opponent-id" /><br />
+
+      <input type="submit" value="Submit" />
+    </form>
+  </body>
+</html>
