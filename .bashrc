@@ -41,3 +41,4 @@ PS1="${SHELL_NAME} ${PS1}]\n${COLOR_DIVIDER}[${COLOR_USERNAME}\u${COLOR_USERHOST
 
 alias vi='nvim'
 alias cl='clear'
+alias lg='lazygit'

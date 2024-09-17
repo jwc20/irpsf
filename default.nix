@@ -14,6 +14,7 @@ in pkgs.mkShell rec {
     buildInputs = (with pkgs; [
         bashInteractive
         neovim # => get settings from ~/.config/nvim/init.vim
+        lazygit
         (pkgs.python3.buildEnv.override {
             ignoreCollisions = true;
             extraLibs = with pkgs.python3.pkgs; [

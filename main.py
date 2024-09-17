@@ -45,7 +45,12 @@ def is_partial_rendering(request: Request):
 @app.get("/lobby", response_class=HTMLResponse)
 async def get_items(request: Request, _=Depends(is_partial_rendering)):
     peer_ids = ["Peer1", "Peer2", "Peer3", "Peer4", "Peer5", "Peer6", "Peer7", "Peer8", "Peer9", "Peer10"]
+
+    # TODO
+    # lobby_list = []
     return templates.TemplateResponse("partials/peers.html", {"request": request, "peer_ids": peer_ids})
+
+
 
 
 
