@@ -1,28 +1,6 @@
-# class UsersController < ApplicationController
-#     def new
-#       @user = User.new
-#     end
-  
-#     def create
-#       @user = User.new(user_params)
-#       if @user.save
-#         log_in @user
-#         redirect_to messages_url
-#       else
-#         render 'new'
-#       end
-#     end
-  
-#     private
-  
-#       def user_params
-#         params.require(:user).permit(:username, :password, :password_confirmation)
-#       end
-#   end
-
-
 class UsersController < ApplicationController
-    # before_action :authorize_user, except: [:create]
+    before_action :authorize_user, except: [:create]
+     # skip_before_action :require_login, only: [:create]
   
     def create
       user = User.create!(user_params)
@@ -54,6 +32,7 @@ class UsersController < ApplicationController
     private
   
     def user_params
-    params.require(:user).permit(:username, :password, :password_confirmation)
+      params.permit(:username, :password)
+      # params.require(:user).permit(:username, :password, :password_confirmation)
     end
   end
