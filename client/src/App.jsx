@@ -15,7 +15,8 @@ function App() {
 
   const fetchCurrentUser = async () => {
     try {
-      const response = await fetch("http://localhost:3003/authorize_user");
+      const response = await fetch("http://127.0.0.1:3003/me");
+      console.log(response)
       if (response.ok) {
         const user = await response.json();
         setCurrentUser(user);
@@ -25,8 +26,9 @@ function App() {
     } catch (error) {
       console.log(error)
     }
-
   };
+
+  if (!currentUser) return <LoginPage onLogin={setCurrentUser} />;
 
   return (
     <Router>
