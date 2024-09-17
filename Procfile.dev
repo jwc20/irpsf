@@ -1,0 +1,2 @@
+web: npm run dev --prefix client
+api: PORT=3003 rails server
