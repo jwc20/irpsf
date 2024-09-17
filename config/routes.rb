@@ -1,4 +1,7 @@
 Rails.application.routes.draw do
+  get "sessions/new"
+  get "sessions/create"
+  get "sessions/destroy"
   mount ActionCable.server, at: '/cable'
 
   # root 'messages#index'
@@ -9,7 +12,8 @@ Rails.application.routes.draw do
   get    '/login',   to: 'sessions#new'
   post   '/login',   to: 'sessions#create'
   delete '/logout',  to: 'sessions#destroy'
-#   get "/authorized_user", to: "users#show"
+
+  get "/authorize_user", to: "users#show"
 
   get "up" => "rails/health#show", as: :rails_health_check
 end

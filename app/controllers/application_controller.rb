@@ -4,6 +4,8 @@ class ApplicationController < ActionController::API
 
     include ActionController::Cookies
 
+    before_action :authorize_user
+
     # protect_from_forgery with: :exception
     # include SessionsHelper
     #     # Confirms a logged-in user.
@@ -20,7 +22,7 @@ class ApplicationController < ActionController::API
     end
 
     def authorize_user
-      render json: { error: "Not Authorized" }, status: :unauthorized unless current_user
+      render json: { error: "Not Authorized" }, status: :unauthorized unless session.include? :user_id
     end
 
     def is_admin
