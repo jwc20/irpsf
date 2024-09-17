@@ -1,16 +1,14 @@
-// import React from 'react';
-
-const Homepage = () => {
+const GamePage = () => {
   return (
     <div>
       <header>
-        <h1>Welcome to the Homepage</h1>
+        <h1>Welcome to the Game page</h1>
       </header>
       <main>
-        <p>This is the homepage.</p>
+        <p>This is the game.</p>
       </main>
     </div>
   );
 };
 
-export default Homepage;
+export default GamePage;
