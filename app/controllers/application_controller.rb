@@ -1,16 +1,43 @@
 class ApplicationController < ActionController::API
-  # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
-  allow_browser versions: :modern
+    rescue_from ActiveRecord::RecordInvalid, with: :render_unprocessable_entity_response
+    rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
 
-  protect_from_forgery with: :exception
-  include SessionsHelper
+    include ActionController::Cookies
 
-    # Confirms a logged-in user.
-    def logged_in_user
-      unless logged_in?
-        flash[:danger] = "Please log in."
-        redirect_to login_url
-      end
+
+    # Only allow modern browsers supporting webp images, web push, badges, import maps, CSS nesting, and CSS :has.
+    allow_browser versions: :modern
+
+    # protect_from_forgery with: :exception
+    # include SessionsHelper
+    #     # Confirms a logged-in user.
+    #     def logged_in_user
+    #     unless logged_in?
+    #         flash[:danger] = "Please log in."
+    #         redirect_to login_url
+    #     end
+    #     end
+
+
+    def current_user
+      User.find_by(id: session[:current_user])
+    end
+
+    def authorize_user
+      render json: { error: "Not Authorized" }, status: :unauthorized unless current_user
+    end
+
+    def is_admin
+      render json: { error: "Not Authorized" }, status: :unauthorized unless current_user.admin
+    end
+
+    private
+
+    def render_unprocessable_entity_response(invalid)
+      render json: { errors: invalid.record.errors }, status: :unprocessable_entity
+    end
+
+    def render_not_found_response(invalid)
+      render json: { errors: invalid }, status: :not_found
     end
 end
-
