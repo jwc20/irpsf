@@ -15,7 +15,9 @@ function App() {
 
   const fetchCurrentUser = async () => {
     try {
-      const response = await fetch("http://127.0.0.1:3003/me");
+      const response = await fetch("http://127.0.0.1:3003/me", {
+        credentials: 'include'
+      });
       console.log(response)
       if (response.ok) {
         const user = await response.json();

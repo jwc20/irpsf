@@ -22,7 +22,6 @@ const LoginPage = ({ onLogin }) => {
       ) : (
         <>
           <SignUpForm onLogin={onLogin} />
-          <Divider />
           <p>
             Already have an account? &nbsp;
             <button onClick={() => setShowLogin(true)}>
